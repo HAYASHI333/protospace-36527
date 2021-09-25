@@ -2,8 +2,8 @@ class PrototypesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_prototype, except: [:index, :new, :create] 
   def index
-    @prototype = Prototype.includes(:user)
-  end
+    @prototypes = Prototype.includes(:user)
+    end
 
   def new
     @prototype = Prototype.new
@@ -19,6 +19,7 @@ class PrototypesController < ApplicationController
     end
 
     def show
+     @prototype = Prototype.find(params[:id])
      @comment = Comment.new
      @comments = @prototype.comments
     end
