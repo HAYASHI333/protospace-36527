@@ -9,19 +9,19 @@
 | position      | text   | null: false |
 
 Association
-- belongs_to :user
+- has_many :prototypes
 - has_many :comments
 
 ##commentsテーブル
 | Column    | Type        | Options |
 | --------- | ----------- | ------- |
-| text      | null: false | ------- |
-| user      | references  | ------- |
-| prototype | references  | ------- |
+| text      | string     | null: false |
+| user      | references  | null: false, foreign_key: true| |
+| prototype | references  |  null: false, foreign_key: true| |
 
 Association
-- has_many :prototypes
-- has_many :comments
+- belongs_to :user
+- belongs_to :prototype
 
 
 ##prototypesテーブル
@@ -34,5 +34,5 @@ Association
 | user       | references    | ----------- |
 
 Association
+- has_many :comments
 - belongs_to :user
-- belongs_to :prototype
